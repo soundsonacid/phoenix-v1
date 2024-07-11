@@ -1,6 +1,6 @@
 pub(crate) mod processor;
 pub(crate) mod token_utils;
-pub(crate) mod validation;
+pub mod validation;
 
 pub mod accounts;
 pub mod dispatch_market;
