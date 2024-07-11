@@ -37,7 +37,7 @@ impl<'a, 'info> MarketAccountInfo<'a, 'info> {
         })
     }
 
-    pub(crate) fn new(
+    pub fn new(
         info: &'a AccountInfo<'info>,
     ) -> Result<MarketAccountInfo<'a, 'info>, ProgramError> {
         let mut market_info = Self::_new_unchecked(info)?;

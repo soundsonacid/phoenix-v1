@@ -30,7 +30,7 @@ macro_rules! fifo_market_size {
     };
 }
 
-pub(crate) fn load_with_dispatch_mut<'a>(
+pub fn load_with_dispatch_mut<'a>(
     market_size_params: &'a MarketSizeParams,
     bytes: &'a mut [u8],
 ) -> Result<MarketWrapperMut<'a, Pubkey, FIFOOrderId, FIFORestingOrder, OrderPacket>, ProgramError>
