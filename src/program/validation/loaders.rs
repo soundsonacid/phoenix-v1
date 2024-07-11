@@ -12,13 +12,10 @@ use super::checkers::{
     phoenix_checkers::{MarketAccountInfo, SeatAccountInfo},
     MintAccountInfo, TokenAccountInfo, PDA,
 };
-use crate::{
-    phoenix_log_authority,
-    program::{
+use crate::program::{
         validation::checkers::{EmptyAccount, Program, Signer},
         MarketHeader, TokenParams,
-    },
-};
+    };
 use core::slice::Iter;
 use solana_program::{
     account_info::{next_account_info, AccountInfo},
@@ -34,25 +31,6 @@ pub fn get_vault_address(market: &Pubkey, mint: &Pubkey) -> (Pubkey, u8) {
 
 pub fn get_seat_address(market: &Pubkey, trader: &Pubkey) -> (Pubkey, u8) {
     Pubkey::find_program_address(&[b"seat", market.as_ref(), trader.as_ref()], &crate::ID)
-}
-
-pub(crate) struct PhoenixLogContext<'a, 'info> {
-    pub(crate) phoenix_program: Program<'a, 'info>,
-    pub(crate) log_authority: PDA<'a, 'info>,
-}
-
-impl<'a, 'info> PhoenixLogContext<'a, 'info> {
-    pub(crate) fn load(
-        account_iter: &mut Iter<'a, AccountInfo<'info>>,
-    ) -> Result<Self, ProgramError> {
-        Ok(Self {
-            phoenix_program: Program::new(next_account_info(account_iter)?, &crate::id())?,
-            log_authority: PDA::new(
-                next_account_info(account_iter)?,
-                &phoenix_log_authority::id(),
-            )?,
-        })
-    }
 }
 
 pub(crate) struct PhoenixMarketContext<'a, 'info> {

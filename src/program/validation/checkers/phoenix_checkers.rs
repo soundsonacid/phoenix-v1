@@ -16,9 +16,9 @@ use std::{
 };
 
 #[derive(Clone)]
-pub(crate) struct MarketAccountInfo<'a, 'info> {
-    pub(crate) info: &'a AccountInfo<'info>,
-    pub(crate) size_params: MarketSizeParams,
+pub struct MarketAccountInfo<'a, 'info> {
+    pub info: &'a AccountInfo<'info>,
+    pub size_params: MarketSizeParams,
 }
 
 impl<'a, 'info> MarketAccountInfo<'a, 'info> {
